@@ -27,13 +27,20 @@ class SearchBar extends React.Component {
         // you could also remove the () around event
         // if you want to change a state property outside of the constructor use 'setState' and pass it an object
         return (
-            <div>
+            <div className="search-bar">
                 {/* on event change we update the value of term that we initialized in the constructor */}
-                <input onChange={(event) => this.setState({term: event.target.value})}/>
+                <input
+                    value={this.state.term}
+                    onChange={(event) => this.onInputChange(event.target.value)}/>
                 <br/>
                 {/*Value of the input: {this.state.term}*/}
             </div>
         )
+    }
+
+    onInputChange(term) {
+        this.setState({term});
+        this.props.onSearchTermChange(term);
     }
 
     // event handlers provide event objects.  call them whatever you want
